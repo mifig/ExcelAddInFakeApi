@@ -3,13 +3,10 @@ class Api::V1::ClientsController < ApplicationController
     client = Client.find_by(client_id: params[:id])
 
     if client
-      render json: { 
-        ok: true, 
-        data: client.attributes
-      }
+      render json: client.attributes
     else
       render json: {
-        ok: false,
+        status: "ERROR",
         message: "No client found with id #{params[:id]}"
       }
     end
